@@ -26,8 +26,7 @@ The project aims to provide a simple task management system implemented in C++. 
 
 
 ```bash
-  git clone https://github.com/your-username/your-repository.git
-
+git clone https://github.com/ShadmanAhm3d/TodoerC-.git
 ```
 
 2 . Navigate to the project directory:
