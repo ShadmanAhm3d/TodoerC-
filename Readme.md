@@ -1,81 +1,59 @@
-Project Name
 
-Brief description of your project.
-Table of Contents
+# Todoer
 
-    Introduction
-    Installation
-    Usage
-    Contributing
-    License
+The project aims to provide a simple task management system implemented in C++. Users can add tasks, view existing tasks, and delete tasks from a list using command-line inputs. The program utilizes file I/O to store task information persistently. It's a lightweight and easy-to-use tool for managing personal or small-scale project tasks efficiently.
 
-Introduction
 
-Provide a brief introduction to your project, including its purpose and main features.
-Installation
-Prerequisites
 
-List any prerequisites or dependencies required to run your program.
 
-    Prerequisite 1
-    Prerequisite 2
-    ...
+## Screenshots
 
-Installation Steps
+![App Screenshot](/images/Todoer.png)
 
-    Clone the repository to your local machine:
 
-    bash
+## Features
 
-git clone https://github.com/your-username/your-repository.git
+- CLI Based
+- Add Tasks
+- Delete Tasks
+- List Tasks
+- Cross Platform
 
-Navigate to the project directory:
 
-bash
+## Installation
 
-cd your-repository
+1 . Clone the repository to your local machine:
 
-Build the program using a C++ compiler:
 
-bash
+```bash
+  git clone https://github.com/your-username/your-repository.git
 
+```
+
+2 . Navigate to the project directory:
+```bash
+ cd your-repository
+ ```
+
+3 . Compile the program and make the binary execuatable and move the binary to your /bin folder
+
+```bash
 g++ -o output_file source_file.cpp
+```
 
-Replace output_file with the desired name for the executable and source_file.cpp with your main source code file.
+    
+## Usage/Examples
 
-Run the executable:
+```bash
+todoer showtasks
 
-bash
+```
 
-    ./output_file
+```bash
+todoer add "sometask"
 
-Usage
+```
 
-Explain how to use your program, including any command-line options or arguments.
-
-bash
-
-./output_file [add/showtasks/del] [task]
-
-    add: Add a new task.
-    showtasks: Display all tasks.
-    del: Delete a task.
-
-Example usage:
-
-bash
-
-./output_file add "Complete assignment"
-./output_file showtasks
-./output_file del 2
-
-Contributing
-
-If you'd like to contribute to this project, please follow these guidelines:
-
-    Fork the repository
-    Create a new branch (git checkout -b feature)
-    Make your changes
-    Commit your changes (git commit -am 'Add new feature')
-    Push to the branch (git push origin feature)
-    Create a new Pull Request
+```bash
+ todoer del
+```

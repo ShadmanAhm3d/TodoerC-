@@ -130,7 +130,8 @@ void deleteit(int lineNumber) {
 
 int main(int argc, char *argv[]) {
   string err = "some kind of error has come";
-  cout << endl << endl;
+
+  cout << "\t" << endl ;
 
   if (argc < 2) {
     cout << "Usage: " << argv[0] << " [add/showtasks] [task]" << endl;
