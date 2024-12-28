@@ -14,9 +14,8 @@ using namespace std;
 // TODO : Show task numbers in each tassk ;
 // TODO : ADD a task delete functionality
 
-
-//TODO : Make it production ready
-// DONE : TODO1 and TODO2 and TODO3 and todo4 and todo5
+// TODO : Make it production ready
+//  DONE : TODO1 and TODO2 and TODO3 and todo4 and todo5
 /*
 int readline(const string &filename) {
   fstream file(filename);
@@ -31,15 +30,14 @@ int readline(const string &filename) {
 } */
 
 string getHomeDirectory() {
-    const char *homeDir;
-    if ((homeDir = getenv("HOME")) == NULL) {
-        // Fallback if HOME environment variable is not set
-        return "./"; // Current directory
-    } else {
-        return string(homeDir);
-    }
+  const char *homeDir;
+  if ((homeDir = getenv("HOME")) == NULL) {
+    // Fallback if HOME environment variable is not set
+    return "./"; // Current directory
+  } else {
+    return string(homeDir);
+  }
 }
-
 
 void showTasks() {
 
@@ -48,7 +46,6 @@ void showTasks() {
   // int linenumber = readline("Myset.dat");
   string filePath = getHomeDirectory() + "/Myset.dat";
 
-  
   fstream file;
   file.open(filePath, ios::in);
   int i = 0;
@@ -58,8 +55,8 @@ void showTasks() {
       i++;
       cout << i << " ." << buffer << endl;
     }
-  }else{
-    cout <<"No task found" << endl;
+  } else {
+    cout << "No task found" << endl;
   }
 }
 
@@ -76,7 +73,7 @@ void addit(string toBeWritten, string err) {
   if (file.is_open()) {
     // file << "[ " <<linenumber <<"]"<<toBeWritten << endl;
     file << toBeWritten << endl;
-    cout<<"Task has been added successfully" <<endl;
+    cout << "Task has been added successfully" << endl;
   } else {
     throw err;
   }
@@ -84,54 +81,47 @@ void addit(string toBeWritten, string err) {
   file.close();
 }
 
-
-
-
-
-
-
 void deleteit(int lineNumber) {
-    string filePath = getHomeDirectory() + "/Myset.dat";
-    string tempFilePath = getHomeDirectory() + "/temp.dat";
+  string filePath = getHomeDirectory() + "/Myset.dat";
+  string tempFilePath = getHomeDirectory() + "/temp.dat";
 
-    ifstream file(filePath);
-    ofstream tempFile(tempFilePath);
+  ifstream file(filePath);
+  ofstream tempFile(tempFilePath);
 
-    if (!file || !tempFile) {
-        cerr << "Error: Unable to open file for deletion." << endl;
-        return;
+  if (!file || !tempFile) {
+    cerr << "Error: Unable to open file for deletion." << endl;
+    return;
+  }
+
+  string line;
+  int count = 0;
+  while (getline(file, line)) {
+    count++;
+    if (count != lineNumber) {
+      tempFile << line << endl;
     }
+  }
 
-    string line;
-    int count = 0;
-    while (getline(file, line)) {
-        count++;
-        if (count != lineNumber) {
-            tempFile << line << endl;
-        }
-    }
+  file.close();
+  tempFile.close();
 
-    file.close();
-    tempFile.close();
+  if (remove(filePath.c_str()) != 0) {
+    cerr << "Error: Unable to delete task." << endl;
+    return;
+  }
 
-    if (remove(filePath.c_str()) != 0) {
-        cerr << "Error: Unable to delete task." << endl;
-        return;
-    }
+  if (rename(tempFilePath.c_str(), filePath.c_str()) != 0) {
+    cerr << "Error: Unable to rename temporary file." << endl;
+    return;
+  }
 
-    if (rename(tempFilePath.c_str(), filePath.c_str()) != 0) {
-        cerr << "Error: Unable to rename temporary file." << endl;
-        return;
-    }
-
-    cout << "Task " << lineNumber << " deleted successfully." << endl;
+  cout << "Task " << lineNumber << " deleted successfully." << endl;
 }
-
 
 int main(int argc, char *argv[]) {
   string err = "some kind of error has come";
 
-  cout << "\t" << endl ;
+  cout << "\t" << endl;
 
   if (argc < 2) {
     cout << "Usage: " << argv[0] << " [add/showtasks] [task]" << endl;
